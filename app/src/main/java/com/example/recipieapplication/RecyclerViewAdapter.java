@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyHolder>{
@@ -55,6 +56,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public int getItemCount() {
         return mData.size();
+    }
+
+    public void filterList(ArrayList<Recipies>filteredList){
+        mData=filteredList;
+        notifyDataSetChanged();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {

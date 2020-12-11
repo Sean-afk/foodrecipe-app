@@ -5,7 +5,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TwoLineListItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +25,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        EditText editText= findViewById(R.id.editText);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+
+            }
+        });
 
         recipes1 = new ArrayList<>();
         recipes1.add(new Recipies("Chicken Roll","200 gm chopped into cubes chicken" +
@@ -104,5 +127,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    private void filter(String text){
+        ArrayList<Recipies>filteredList=new ArrayList<>();
+        for(Recipies item: recipes1){
+            if(item.getRecipeName().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+
+            }
+        }
+        myAdapter.filterList(filteredList);
+
+    }
+
 
 }

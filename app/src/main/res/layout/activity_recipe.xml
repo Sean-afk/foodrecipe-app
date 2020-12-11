@@ -5,18 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Recipe">
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:padding="10dp">
-
+        android:padding="10dp"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            >
             <TextView
                 android:id="@+id/text_recipe"
                 android:layout_width="wrap_content"
@@ -24,8 +23,8 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/recipeName"
                 android:textSize="21sp"
-                android:textStyle="bold" />
-
+                android:textStyle="bold"
+                />
             <TextView
                 android:id="@+id/ingredients"
                 android:layout_width="wrap_content"
@@ -33,7 +32,9 @@
                 android:layout_marginTop="20dp"
                 android:layout_margin="18dp"
                 android:textSize="20sp"
-                android:text="@string/ingredients"/>
+                android:text="@string/ingredients"
+
+                />
             <TextView
                 android:id="@+id/method"
                 android:layout_width="wrap_content"
@@ -41,8 +42,8 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/recipeName"
                 android:textSize="21sp"
-                android:textStyle="bold" />
-
+                android:textStyle="bold"
+                />
             <TextView
                 android:id="@+id/recipe"
                 android:layout_width="wrap_content"
@@ -50,9 +51,16 @@
                 android:layout_marginTop="20dp"
                 android:layout_margin="18dp"
                 android:textSize="20sp"
-                android:text="@string/ingredients"/>
+                android:text="@string/ingredients"
+
+                />
+
 
 
         </LinearLayout>
+
+
     </androidx.core.widget.NestedScrollView>
+
+
 </LinearLayout>
