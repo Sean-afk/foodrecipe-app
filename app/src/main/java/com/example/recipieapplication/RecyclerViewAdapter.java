@@ -40,7 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MyHolder myholder,final int i) {
+    public void onBindViewHolder(@NonNull  final MyHolder myholder, final int i) {
         myholder.recipeTitle.setText(mData.get(i).getRecipeName());
         myholder.image_recipe_thumbnail.setImageResource(mData.get(i).getThumbnail());
         myholder.cardView.setOnClickListener(new View.OnClickListener() {

@@ -30,6 +30,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ArrayList<Recipies>recipes1 = new ArrayList<>();
+        recipes1.add(new Recipies("Chocolate Cake","2 cups all-purpose flour\n" +
+                "2 cups sugar\n" +
+                "3/4 cup unsweetened cocoa powder\n" +
+                "2 teaspoons baking powder\n" +
+                "1 1/2 teaspoons baking soda\n" +
+                "1 teaspoon salt\n" +
+                "1 teaspoon espresso powder homemade or store-bought\n" +
+                "1 cup milk buttermilk, almond, or coconut milk\n" +
+                "1/2 cup vegetable oil canola oil, or melted coconut oil\n" +
+                "2 large eggs\n" +
+                "2 teaspoons vanilla extract\n" +
+                "1 cup boiling water","Method","Chocolate cake is made with chocolate. It can also include other ingredients.[1] These include fudge, vanilla creme, and other sweeteners. The history of chocolate cake goes back to 1764, when Dr. James Baker discovered how to make chocolate by grinding cocoa beans between two massive circular millstones.[2][3] In 1828, Coenraad van Houten of the Netherlands developed a mechanical extraction method for extracting the fat from cacao liquor resulting in cacao butter and the partly defatted cacao, a compacted mass of solids that could be sold as it was \"rock cacao\" or ground into powder.[4] The processes transformed chocolate from an exclusive luxury to an inexpensive daily snack.[4] A process for making silkier and smoother chocolate called conching was developed in 1879 by Rodolphe Lindt and made it easier to bake with chocolate, as it amalgamates smoothly and completely with cake batters.[4] Until 1890 to 1900, chocolate recipes were mostly for chocolate drinks,[4] and its presence in cakes was only in fillings and glazes.[5] In 1886, American cooks began adding chocolate to the cake batter, to make the first chocolate cakes in the US",R.drawable.choco));
+
         recipes1.add(new Recipies("Chicken Roll","200 gm chopped into cubes chicken" +
                 "1 medium chopped tomato" +
                 "1/2 pinch red chilli powder" +
@@ -97,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
                         "now add in 2 tbsp tomato sauce and ½ tsp mixed herbs. mix well." +
                         "add in cooked pasta and mix gently till the sauce gets coated well." +
                         "finally, serve masala pasta indian style hot topped with cheese if required.",R.drawable.pasta1));
-
 
 
         myrecyclerView = (RecyclerView)findViewById(R.id.recyclerview_id);
