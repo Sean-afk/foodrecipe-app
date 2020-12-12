@@ -7,8 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.TwoLineListItem;
 
 import java.util.ArrayList;
@@ -19,33 +23,13 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView myrecyclerView;
     RecyclerViewAdapter myAdapter;
 
-    List<Recipies> recipes1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText editText= findViewById(R.id.editText);
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                filter(s.toString());
-
-            }
-        });
-
-        recipes1 = new ArrayList<>();
+        ArrayList<Recipies>recipes1 = new ArrayList<>();
         recipes1.add(new Recipies("Chicken Roll","200 gm chopped into cubes chicken" +
                 "1 medium chopped tomato" +
                 "1/2 pinch red chilli powder" +
@@ -127,17 +111,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    private void filter(String text){
-        ArrayList<Recipies>filteredList=new ArrayList<>();
-        for(Recipies item: recipes1){
-            if(item.getRecipeName().toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(item);
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.example_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
             }
-        }
-        myAdapter.filterList(filteredList);
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
-
 
 }

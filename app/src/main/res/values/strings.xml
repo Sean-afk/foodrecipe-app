@@ -2,4 +2,7 @@
     <string name="app_name">Recipie Application</string>
     <string name="recipeName">Recipe Name</string>
     <string name="ingredients">Ingredients</string>
+    <string name="Search">Search</string>
+    <string name="Recipe">recipe</string>
+    <string name="Method">method</string>
 </resources>

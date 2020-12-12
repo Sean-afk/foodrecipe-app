@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,15 +15,18 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyHolder>{
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyHolder>implements Filterable {
     private Context mContext;
     private List<Recipies> mData;
+    private List<Recipies> mDataFull;
 
     public RecyclerViewAdapter(Context mContext,List<Recipies> mData) {
         this.mContext=mContext;
         this.mData=mData;
+        this.mDataFull=new ArrayList<>(mData);
     }
 
 
@@ -29,13 +34,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
-        LayoutInflater mInflater=LayoutInflater.from(mContext);
-        view=mInflater.inflate(R.layout.cardview_recipe,viewGroup,false);
+        LayoutInflater layoutInflater=LayoutInflater.from(mContext);
+        view=layoutInflater.inflate(R.layout.cardview_recipe,viewGroup,false);
         return new MyHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyHolder myholder,final int i) {
+    public void onBindViewHolder(@NonNull final MyHolder myholder,final int i) {
         myholder.recipeTitle.setText(mData.get(i).getRecipeName());
         myholder.image_recipe_thumbnail.setImageResource(mData.get(i).getThumbnail());
         myholder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("Ingredients",mData.get(i).getRecipeIngredients());
                 intent.putExtra("MethodTitle",mData.get(i).getRecipeMethodTitle());
                 intent.putExtra("Recipe",mData.get(i).getRecipe());
+                intent.putExtra("Thumbnail",mData.get(i).getThumbnail());
                  mContext.startActivity(intent);
 
             }
@@ -58,10 +64,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mData.size();
     }
 
-    public void filterList(ArrayList<Recipies>filteredList){
-        mData=filteredList;
-        notifyDataSetChanged();
-    }
 
     public class MyHolder extends RecyclerView.ViewHolder {
         TextView recipeTitle;
@@ -76,4 +78,39 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             cardView=(CardView)itemView.findViewById(R.id.cardview_id);
         }
     }
+
+    @Override
+    public Filter getFilter() {
+        return dataFilter;
+    }
+    private Filter dataFilter= new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+           List<Recipies> filteredList=new ArrayList<>();
+           if(constraint.toString().isEmpty()){
+               filteredList.addAll(mDataFull);
+           }
+           else{
+               for (Recipies item: mDataFull) {
+                   String filterPattern=constraint.toString().toLowerCase().trim();
+                   if (item.getRecipeName().toLowerCase().contains(filterPattern)) {
+                       filteredList.add(item);
+                   }
+               }
+           }
+
+           FilterResults results=new FilterResults();
+           results.values=filteredList;
+           return results;
+
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mData.clear();
+            mData.addAll((Collection<? extends Recipies>) results.values);
+            notifyDataSetChanged();
+
+        }
+    };
 }
