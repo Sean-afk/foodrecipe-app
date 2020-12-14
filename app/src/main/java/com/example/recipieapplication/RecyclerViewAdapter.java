@@ -33,16 +33,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view;
+
         LayoutInflater layoutInflater=LayoutInflater.from(mContext);
-        view=layoutInflater.inflate(R.layout.cardview_recipe,viewGroup,false);
+        View view=layoutInflater.inflate(R.layout.cardview_recipe,viewGroup,false);
         return new MyHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull  final MyHolder myholder, final int i) {
-        myholder.recipeTitle.setText(mData.get(i).getRecipeName());
-        myholder.image_recipe_thumbnail.setImageResource(mData.get(i).getThumbnail());
+        Recipies recipies=mData.get(i);
+        myholder.recipeTitle.setText(recipies.getRecipeName());
+        myholder.image_recipe_thumbnail.setImageResource(recipies.getThumbnail());
         myholder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
