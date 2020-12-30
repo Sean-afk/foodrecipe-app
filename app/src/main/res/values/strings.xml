@@ -3,6 +3,6 @@
     <string name="recipeName">Recipe Name</string>
     <string name="ingredients">Ingredients</string>
     <string name="Search">Search</string>
-    <string name="Recipe">recipe</string>
-    <string name="Method">method</string>
+    <string name="Recipe">Recipe</string>
+    <string name="Method">Method</string>
 </resources>

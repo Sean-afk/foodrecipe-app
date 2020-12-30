@@ -32,27 +32,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @NonNull
     @Override
-    public MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 
-        LayoutInflater layoutInflater=LayoutInflater.from(mContext);
-        View view=layoutInflater.inflate(R.layout.cardview_recipe,viewGroup,false);
+        View view= LayoutInflater.from(mContext).inflate(R.layout.cardview_recipe,viewGroup,false);
         return new MyHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull  final MyHolder myholder, final int i) {
-        Recipies recipies=mData.get(i);
+    public void onBindViewHolder(@NonNull  MyHolder myholder,  int position) {
+        final Recipies recipies=mData.get(position);
         myholder.recipeTitle.setText(recipies.getRecipeName());
         myholder.image_recipe_thumbnail.setImageResource(recipies.getThumbnail());
-        myholder.cardView.setOnClickListener(new View.OnClickListener() {
+        myholder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext,Recipe.class);
-                intent.putExtra("Name",mData.get(i).getRecipeName());
-                intent.putExtra("Ingredients",mData.get(i).getRecipeIngredients());
-                intent.putExtra("MethodTitle",mData.get(i).getRecipeMethodTitle());
-                intent.putExtra("Recipe",mData.get(i).getRecipe());
-                intent.putExtra("Thumbnail",mData.get(i).getThumbnail());
+                intent.putExtra("Name",recipies.getRecipeName());
+                intent.putExtra("Ingredients",recipies.getRecipeIngredients());
+                intent.putExtra("MethodTitle",recipies.getRecipeMethodTitle());
+                intent.putExtra("Recipe",recipies.getRecipe());
+                intent.putExtra("Thumbnail",recipies.getThumbnail());
                  mContext.startActivity(intent);
 
             }
@@ -74,9 +73,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
-            recipeTitle= (TextView)itemView.findViewById(R.id.text_recipe);
-            image_recipe_thumbnail=(ImageView)itemView.findViewById(R.id.recipe_image_id);
-            cardView=(CardView)itemView.findViewById(R.id.cardview_id);
+            recipeTitle=itemView.findViewById(R.id.text_recipe);
+            image_recipe_thumbnail=itemView.findViewById(R.id.recipe_image_id);
+            cardView=itemView.findViewById(R.id.cardview_id);
         }
     }
 

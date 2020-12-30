@@ -2,6 +2,7 @@ package com.example.recipieapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TwoLineListItem;
 
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Recipies>recipes1 = new ArrayList<>();
+        ArrayList<Recipies> recipes1= new ArrayList<>();
        recipes1.add(new Recipies("Burger","Beef","Method","A hamburger (also burger for short) is a sandwich consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bread roll or bun. The patty may be pan fried, grilled, smoked or flame broiled. Hamburgers are often served with cheese, lettuce, tomato, onion, pickles, bacon, or chiles; condiments such as ketchup, mustard, mayonnaise, relish, or a \"special sauce\", often a variation of Thousand Island dressing; and are frequently placed on sesame seed buns. A hamburger topped with cheese is called a cheeseburger.\n"+
                "The term \"burger\" can also be applied to the meat patty on its own, especially in the United Kingdom, where the term \"patty\" is rarely used, or the term can even refer simply to ground beef. Since the term hamburger usually implies beef, for clarity \"burger\" may be prefixed with the type of meat or meat substitute used, as in beef burger, turkey burger, bison burger, or veggie burger.\n" +
                "Hamburgers are sold at fast-food restaurants, diners, and specialty and high-end restaurants. There are many international and regional variations of the hamburger.\n" +
@@ -123,11 +125,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        myrecyclerView = (RecyclerView)findViewById(R.id.recyclerview_id);
+        myrecyclerView = findViewById(R.id.recyclerview_id);
 
         myAdapter = new RecyclerViewAdapter(this,recipes1);
 
-        myrecyclerView.setLayoutManager(new GridLayoutManager(this,1));
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+
+        myrecyclerView.setLayoutManager(layoutManager);
 
         myrecyclerView.setAdapter(myAdapter);
 

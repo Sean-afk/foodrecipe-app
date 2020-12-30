@@ -20,16 +20,15 @@ public class Recipe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        mRecipeName = (TextView)findViewById(R.id.text_recipe);
-        mRecipeIngredients = (TextView)findViewById(R.id.ingredients);
-        mRecipeMethodTitle = (TextView)findViewById(R.id.method);
-        mRecipe = (TextView)findViewById(R.id.recipe);
+        mRecipeName = findViewById(R.id.text_recipe);
+        mRecipeIngredients = findViewById(R.id.ingredients);
+        mRecipeMethodTitle = findViewById(R.id.method);
+        mRecipe = findViewById(R.id.recipe);
 
-        Intent intent = getIntent();
-        String Title = intent.getExtras().getString("RecipeName");
-        String Ingredients = intent.getExtras().getString("RecipeIngredients");
-        String MethodTitle = intent.getExtras().getString("RecipeMethodTitle");
-        String Recipe = intent.getExtras().getString("Recipe");
+        String Title = getIntent().getStringExtra("Name");
+        String Ingredients =getIntent().getStringExtra ("Ingredients");
+        String MethodTitle = getIntent().getStringExtra("MethodTitle");
+        String Recipe = getIntent().getStringExtra("Recipe");
 
         mRecipeName.setText(Title);
         mRecipeIngredients.setText(Ingredients);
