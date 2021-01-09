@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.security.Key;
@@ -14,6 +16,7 @@ public class Recipe extends AppCompatActivity {
     private TextView mRecipeIngredients;
     private TextView mRecipeMethodTitle;
     private TextView mRecipe;
+    private Button share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,14 @@ public class Recipe extends AppCompatActivity {
         mRecipeIngredients = findViewById(R.id.ingredients);
         mRecipeMethodTitle = findViewById(R.id.method);
         mRecipe = findViewById(R.id.recipe);
+        share=findViewById(R.id.shareButton);
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         String Title = getIntent().getStringExtra("Name");
         String Ingredients =getIntent().getStringExtra ("Ingredients");

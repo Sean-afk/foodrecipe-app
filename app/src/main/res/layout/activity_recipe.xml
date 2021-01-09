@@ -58,6 +58,22 @@
 
                 />
 
+            <Button
+                android:id="@+id/shareButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableEnd="@drawable/share"
+                android:drawableRight="@drawable/share"
+                android:gravity="left|center_vertical"
+                android:drawableTint="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/Share"
+                android:textSize="18sp"
+                app:backgroundTint="#00BCD4"
+                app:iconTint="#FFF4F4" />
+
 
         </LinearLayout>
 
