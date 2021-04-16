@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Recipie Application</string>
+    <string name="app_name">FoodiePedia</string>
     <string name="recipeName">Recipe Name</string>
     <string name="ingredients">Ingredients</string>
     <string name="Search">Search</string>
