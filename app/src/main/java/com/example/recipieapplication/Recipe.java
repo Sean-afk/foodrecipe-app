@@ -27,7 +27,7 @@ public class Recipe extends AppCompatActivity {
         mRecipeIngredients = findViewById(R.id.ingredients);
         mRecipeMethodTitle = findViewById(R.id.method);
         mRecipe = findViewById(R.id.recipe);
-        share=findViewById(R.id.shareButton);
+
 
         share.setOnClickListener(new View.OnClickListener() {
             @Override
